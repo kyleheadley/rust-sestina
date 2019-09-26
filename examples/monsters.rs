@@ -65,9 +65,8 @@ fn main() {
 			match (mtype,damage) {
 				(_,1) => "glare",
 				(_,2) => "bite",
-				("Direwolf",3) => "tail",
-				("Dragon",3) => "tail",
 				("Vampire",3) => "cape",
+				(_,3) => "tail",
 				(_,4) => "claws",
 				_ => "unknown attack"
 			}
