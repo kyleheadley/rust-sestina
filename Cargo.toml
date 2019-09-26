@@ -1,0 +1,8 @@
+[package]
+name = "narative_gen"
+version = "0.1.0"
+authors = ["kyleheadley <kheadley@uab.edu>"]
+edition = "2018"
+
+[dependencies]
+rand = "0.7"
