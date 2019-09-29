@@ -4,12 +4,13 @@ use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 use rand::distributions::{Distribution, Uniform};
 
-trait GenType where Self: Sized {
+// This could be handled by macro
+trait GenType where Self: Sized + Copy {
 	fn first() -> Self;
 	fn next(&self) -> Option<Self>;
 }
 
-#[derive(Clone,Copy)]
+#[derive(Debug,Clone,Copy)]
 enum Suit {
 	Pentacles,
 	Cups,
@@ -28,7 +29,7 @@ impl GenType for Suit {
 	}
 }
 
-#[derive(Clone,Copy)]
+#[derive(Debug,Clone,Copy)]
 enum Rank {
 	Ace,
 	Two,
@@ -68,7 +69,7 @@ impl GenType for Rank {
 	}
 }
 
-#[derive(Clone,Copy)]
+#[derive(Debug,Clone,Copy)]
 struct Minor {
 	suit: Suit,
 	rank: Rank,
@@ -90,7 +91,7 @@ impl GenType for Minor {
 	}
 }
 
-#[derive(Clone,Copy)]
+#[derive(Debug,Clone,Copy)]
 enum Major {
 	Fool,
 	Magician,
@@ -146,7 +147,7 @@ impl GenType for Major {
 	}
 }
 
-#[derive(Clone,Copy)]
+#[derive(Debug,Clone,Copy)]
 enum Card {
 	Major(Major),
 	Minor(Minor),
@@ -164,5 +165,33 @@ impl GenType for Card {
 	}
 }
 
+struct GenIter<G:GenType> {
+	last: Option<G>,
+}
+impl<G:GenType> GenIter<G> {
+	fn new() -> GenIter<G> {GenIter{last:None}}
+}
+
+impl<G:GenType> Iterator for GenIter<G> {
+	type Item = G;
+	fn next(&mut self) -> Option<Self::Item> {
+		match self.last {
+			None => self.last = Some(G::first()),
+			Some(g) => self.last = g.next(),
+		};
+		self.last
+	}
+}
+
 fn main() {
+	let mut rng = thread_rng();
+
+	let mut deck: Vec<Card> = GenIter::new().collect();
+	println!("random card: {:?}", deck.choose(&mut rng).unwrap());
+
+	deck.shuffle(&mut rng);
+	println!("shuffled deck");
+	println!("first card: {:?}",deck.remove(0));
+	println!("second card: {:?}",deck.remove(0));
+	println!("third card: {:?}",deck.remove(0));
 }
