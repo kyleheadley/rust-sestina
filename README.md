@@ -2,9 +2,11 @@ rust-sestina
 ============
 Examples from https://github.com/chrisamaphone/sestina using Rust rather than the interpreter there. Rust's type system and rand library include most of the functionality of the language. Rusts's macros can hopefully provide an elegant interface in the future.
 
+The code in the main functions of each example demonstrate the potential simplicity once the outer type-system setup is complete. This setup is simple but verbose, which is the perfect use-case for macros.
+
 Rust
 ====
-- install `www.rust-lang.org`
+- install www.rust-lang.org
 - type-check `cargo check`, `cargo check --example <filename-no-ext>`
 - run `cargo run`, `cargo run --example <filename-no-ext>`
 
