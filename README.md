@@ -4,16 +4,18 @@ Examples from https://github.com/chrisamaphone/sestina using Rust rather than th
 
 Rust
 ====
-install `www.rust-lang.org`
-type-check `cargo check`, `cargo check --example <filename-no-ext>`
-run `cargo run`, `cargo run --example <filename-no-ext>`
+- install `www.rust-lang.org`
+- type-check `cargo check`, `cargo check --example <filename-no-ext>`
+- run `cargo run`, `cargo run --example <filename-no-ext>`
 
 main
 ====
 `cargo run`
+
 Early trial creating a macro parser for the language. The language is experimental and not fully developed, so this was never going to get too far.
 
 examples
 ========
 `cargo run --example <filename-no-ext>`
+
 Recreations of sestina examples, each with a different strategy: run-time data, random distrubutions, enums and iterators.
