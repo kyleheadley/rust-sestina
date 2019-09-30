@@ -1,8 +1,7 @@
 extern crate rand;
 
-use rand::{thread_rng, Rng};
+use rand::thread_rng;
 use rand::seq::SliceRandom;
-use rand::distributions::{Distribution, Uniform};
 
 // This could be handled by macro
 trait GenType where Self: Sized + Copy {
